@@ -74,7 +74,7 @@ public class SentryErrorHandler implements ErrorHandler {
             ObjectInputStream ois = new ObjectInputStream(bais);
             var copy = (Throwable) ois.readObject();
 
-            if (!(copy instanceof NullPointerException) && !(copy instanceof IndexOutOfBoundsException)) {
+            if (!(copy instanceof NullPointerException)) {
                 var msgField = Throwable.class.getDeclaredField("detailMessage");
                 msgField.setAccessible(true);
                 msgField.set(copy, null);
